@@ -1,9 +1,27 @@
 [tool.poetry]
 name = "dj-generator"
-version = "0.1.0"
-description = "CURD generator for django"
+version = "0.0.1"
+description = "Boilerplate generator for django"
+readme='README.md'
+homepage='https://github.com/shimulch/dj-generator'
+repository='https://github.com/shimulch/dj-generator'
+keywords=['django', 'crud', 'crud-generator', 'generator']
 authors = ["Shimul Chowdhury <shimul@divine-it.net>"]
 license = "MIT"
+classifiers = [
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Libraries",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: Implementation :: PyPy"
+]
+packages = [
+    { include = "dj_generator" }
+]
+include = [
+    'dj_generator/templates/**/*.html'
+]
+
+
 
 [tool.poetry.dependencies]
 python = "^3.6"
