@@ -1,0 +1,8 @@
+{% load generator_tags %}
+
+<table>{% for field in model_fields %}
+    <tr>
+        <th>{{ field }}</th>
+        <td>{% print_tag model_name_slug|add:'.'|add:field %}</td>
+    </tr>{% endfor %}
+</table>

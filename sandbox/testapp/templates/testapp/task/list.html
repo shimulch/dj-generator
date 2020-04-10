@@ -1,0 +1,26 @@
+
+<a href="{% url "testapp:task.create" %}">Create New Task</a>
+<table>
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>title</th>
+            <th>description</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for task in object_list %}
+        <tr>
+            <td>{{ task.id }}</td>
+            <td>{{ task.title }}</td>
+            <td>{{ task.description }}</td>
+            <td>
+                <a href="{% url "testapp:task.detail" pk=task.pk %}">View</a>
+                <a href="{% url "testapp:task.update" pk=task.pk %}">Update</a>
+                <a href="{% url "testapp:task.delete" pk=task.pk %}">Delete</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

@@ -43,6 +43,8 @@ class Command(BaseCommand):
 
         code_tpl_names, template_tpl_names = self.get_templates(template)
 
+        model_name_slug = slugify(model_name)
+
         context = {
             'model_cls': model_cls,
             'model_fields': model_fields,
@@ -50,13 +52,22 @@ class Command(BaseCommand):
             'app_module': app_module,
             'app_model_module': app_model_module,
             'model_name': model_name,
+            'model_name_slug': model_name_slug,
             'model_name_plural': model_cls._meta.verbose_name_plural,
-            'template_path': relative_generated_template_path
+            'model_name_plural_slug': slugify(model_cls._meta.verbose_name_plural),
+            'template_path': relative_generated_template_path,
+            'routes': {route: f'{app_label}:{model_name_slug}.{route}' for route in ['create', 'update', 'delete', 'list', 'detail']}
         }
 
         if len(code_tpl_names) > 0:
             if not os.path.exists(code_out_path):
                 os.makedirs(code_out_path)
+
+            init_py_file = os.path.join(code_out_path, '__init__.py')
+            if not os.path.exists(init_py_file):
+                with open(init_py_file, 'w') as f:
+                    pass
+
             self.generate_files(code_out_path, code_tpl_names, context, force)
 
         if len(template_tpl_names) > 0:
@@ -117,7 +128,7 @@ class Command(BaseCommand):
             if not exists or force:
                 if exists:
                     self.stdout.write(self.style.WARNING(f'File {file_name} already exists! Overriding'))
-                with open(file_name, 'w') as f:
+                with open(file_name, 'w+') as f:
                     f.write(rendered)
             else:
                 self.stdout.write(self.style.WARNING(f'File {file_name} already exists! Skipping'))

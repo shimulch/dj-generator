@@ -1,4 +1,5 @@
 from django import template
+from django.utils.safestring import mark_safe
 register = template.Library()
 
 
@@ -18,9 +19,9 @@ def _build_tag_str(*args, **kwargs):
 
 @register.simple_tag
 def print_tag(*args, **kwargs):
-    return "{{ %s }}" % _build_tag_str(*args, **kwargs)
+    return mark_safe("{{ %s }}" % _build_tag_str(*args, **kwargs))
 
 
 @register.simple_tag
 def eval_tag(*args, **kwargs):
-    return "{%% %s %%}" % _build_tag_str(*args, **kwargs)
+    return mark_safe("{%% %s %%}" % _build_tag_str(*args, **kwargs))

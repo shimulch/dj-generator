@@ -10,18 +10,20 @@ class {{ model_name }}ListView(ListView):
     template_name = '{{ template_path }}/list.html'
 
 
-class {{ model_name }}CreateView(CreateView):
+class {{ model_name }}CreateView(SuccessMessageMixin, CreateView):
     model = {{ model_name }}
     fields = {{ model_fields|safe }}
     template_name = '{{ template_path }}/create.html'
-    success_url = reverse_lazy('{{ model_name|slugify }}.list')
+    success_url = reverse_lazy('{{ routes.list }}')
+    success_message = '{{ model_name }} %({{ model_fields.1 }})s created successfully!'
 
 
-class {{ model_name }}UpdateView(UpdateView):
+class {{ model_name }}UpdateView(SuccessMessageMixin, UpdateView):
     model = {{ model_name }}
     fields = {{ model_fields|safe }}
     template_name = '{{ template_path }}/update.html'
-    success_url = reverse_lazy('{{ model_name|slugify }}.list')
+    success_url = reverse_lazy('{{ routes.list }}')
+    success_message = '{{ model_name }} %({{ model_fields.1 }})s updated successfully!'
 
 
 class {{ model_name }}DetailView(DetailView):
@@ -29,7 +31,8 @@ class {{ model_name }}DetailView(DetailView):
     template_name = '{{ template_path }}/detail.html'
 
 
-class {{ model_name }}DeleteView(DeleteView):
+class {{ model_name }}DeleteView(SuccessMessageMixin, DeleteView):
     model = {{ model_name }}
     template_name = '{{ template_path }}/delete_confirm.html'
-    success_url = reverse_lazy('{{ model_name|slugify }}.list')
+    success_url = reverse_lazy('{{ routes.list }}')
+    success_message = '{{ model_name }} %({{ model_fields.1 }})s deleted successfully!'

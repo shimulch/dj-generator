@@ -1,3 +1,22 @@
 {% load generator_tags %}
-
-{% print_tag "object_list" %}
+<a href="{% eval_tag 'url "'|add:routes.create|add:'"'  %}">Create New {{ model_name }}</a>
+<table>
+    <thead>
+        <tr>{% for field in model_fields %}
+            <th>{{ field }}</th>{% endfor %}
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    {% eval_tag "for" model_name_slug "in object_list" %}
+        <tr>{% for field in model_fields %}
+            <td>{% print_tag model_name_slug|add:"."|add:field %}</td>{% endfor %}
+            <td>
+                <a href="{% eval_tag 'url "'|add:routes.detail|add:'"' pk=model_name_slug|add:'.pk' %}">View</a>
+                <a href="{% eval_tag 'url "'|add:routes.update|add:'"' pk=model_name_slug|add:'.pk' %}">Update</a>
+                <a href="{% eval_tag 'url "'|add:routes.delete|add:'"' pk=model_name_slug|add:'.pk' %}">Delete</a>
+            </td>
+        </tr>
+    {% eval_tag "endfor" %}
+    </tbody>
+</table>
