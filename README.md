@@ -6,7 +6,19 @@ The django templating system is pretty powerful. We can make use of the power of
 ## Assumptions
 This project assumes that you follow certain folder structure. That makes this project to stay as simple as possible.
 
-
+## Installation
+Install from pypy -
+```sybase
+pip install dj-generator
+```
+Add to ``INSTALLED_APPS`` in your ``settings.py``
+```python
+INSTALLED_APPS = [
+    ...,
+    
+    'dj_generator'
+]
+```
 ## Usage
 Pattern -
 ```sybase
