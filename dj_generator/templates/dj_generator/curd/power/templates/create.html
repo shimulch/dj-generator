@@ -1,0 +1,7 @@
+{% load generator_tags %}
+
+<form method="post">
+    {% eval_tag "csrf_token" %}
+    {% print_tag "form.as_ul" %}
+    <button type="submit">Create</button>
+</form>

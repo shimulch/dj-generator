@@ -1,0 +1,4 @@
+{% load generator_tags %}
+<a href="{% eval_tag 'url "'|add:routes.detail|add:'"' pk='record.pk' %}">View</a>
+<a href="{% eval_tag 'url "'|add:routes.update|add:'"' pk='record.pk' %}">Update</a>
+<a href="{% eval_tag 'url "'|add:routes.delete|add:'"' pk='record.pk' %}">Delete</a>

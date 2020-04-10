@@ -27,6 +27,20 @@ argon2 = ["argon2-cffi (>=16.1.0)"]
 bcrypt = ["bcrypt"]
 
 [[package]]
+category = "dev"
+description = "Table/data-grid framework for Django"
+name = "django-tables2"
+optional = false
+python-versions = "*"
+version = "2.3.1"
+
+[package.dependencies]
+Django = ">=1.11"
+
+[package.extras]
+tablib = ["tablib"]
+
+[[package]]
 category = "main"
 description = "World timezone definitions, modern and historical"
 name = "pytz"
@@ -43,7 +57,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 version = "0.3.1"
 
 [metadata]
-content-hash = "90e716116b4426b286edfc4f024e8df681f2127b187a8ab7772c00ea28da3391"
+content-hash = "d9963cdfec2d30a35799e41a616933afb24e27d65660c724b239c9b1c5709913"
 python-versions = "^3.6"
 
 [metadata.files]
@@ -54,6 +68,10 @@ asgiref = [
 django = [
     {file = "Django-3.0.5-py3-none-any.whl", hash = "sha256:642d8eceab321ca743ae71e0f985ff8fdca59f07aab3a9fb362c617d23e33a76"},
     {file = "Django-3.0.5.tar.gz", hash = "sha256:d4666c2edefa38c5ede0ec1655424c56dc47ceb04b6d8d62a7eac09db89545c1"},
+]
+django-tables2 = [
+    {file = "django-tables2-2.3.1.tar.gz", hash = "sha256:28da782f81f046c7d921246f43e7ba2df430cafe5a0e00a0f9dadef25a0e487d"},
+    {file = "django_tables2-2.3.1-py2.py3-none-any.whl", hash = "sha256:7e425ad51e22caf5470351981f0fcd4fd35d4cf2d4c3b76fa1b7bf56251778d1"},
 ]
 pytz = [
     {file = "pytz-2019.3-py2.py3-none-any.whl", hash = "sha256:1c557d7d0e871de1f5ccd5833f60fb2550652da6be2693c1e02300743d21500d"},
